@@ -33,6 +33,13 @@ public class ConnectionViewController extends BaseViewController  {
 	}
 	
 	@Override
+	public void show() {
+		super.show();
+		showConnectionView(false);
+    	showStartScreen(true);
+	}
+	
+	@Override
 	protected View getViewFromSource() {
 		 View view = findViewById(R.layout.connecton_menu);
 	
