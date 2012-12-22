@@ -41,10 +41,12 @@ public class GameActivity extends Activity {
 	//	mSelectText = (TextView) findViewById(R.id.info);
 		GridView gridview = (GridView) findViewById(R.id.gridView1);
 		Ad = new ImAdapter(this);
+	    game = new Game (3, 5);
+	    Ad.setGame(game);
 		gridview.setAdapter(Ad);
 
 		gridview.setOnItemClickListener(gridviewOnItemClickListener);
-	    game = new Game (3, 5);
+	 
     }
     
     private GridView.OnItemClickListener gridviewOnItemClickListener = new GridView.OnItemClickListener() {
