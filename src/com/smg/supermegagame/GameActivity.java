@@ -18,8 +18,10 @@ import android.content.res.Configuration;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +31,30 @@ public class GameActivity extends Activity {
 	
 	private static String TAG = "GameActivity";
 	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRequestedOrientation(Configuration.ORIENTATION_LANDSCAPE);
-        setContentView(R.layout.activity_game);
-        
+    	super.onCreate(savedInstanceState);
+		setContentView(R.layout.field);
+
+	//	mSelectText = (TextView) findViewById(R.id.info);
+		GridView gridview = (GridView) findViewById(R.id.gridView1);
+		gridview.setAdapter(new ImAdapter(this));
+
+		gridview.setOnItemClickListener(gridviewOnItemClickListener);
+
     }
     
+    private GridView.OnItemClickListener gridviewOnItemClickListener = new GridView.OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View v, int position,
+				long id) {
+			// TODO Auto-generated method stub
+
+		//	mSelectText.setText(String.valueOf(position));
+		}
+	};
 
 
     @Override

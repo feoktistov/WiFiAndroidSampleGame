@@ -44,5 +44,5 @@ public class ImAdapter extends BaseAdapter {
 	}
 
 	// references to our images
-	public	Integer[] mThumbIds = { R.drawable.card };
+	public	Integer[] mThumbIds = { R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card };
 }

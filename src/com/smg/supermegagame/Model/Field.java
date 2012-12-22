@@ -12,16 +12,18 @@ public class Field {
 	String[] CellNames = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
 	
 	 private Cell cells[][];
-	 private int size;
+	 private int width;
+	 private int height;
 
-	 Field(int n)
+	 Field(int w, int h)
 	 {
-		    size = n;
-	        cells = new Cell[n][n];
+		    width = w;
+		    height = h;
+	        cells = new Cell[w][h];
 
-	        for(int i = 0; i < n; i++)
+	        for(int i = 0; i < w; i++)
 	        {
-	            for(int j = 0; j < n; j++)
+	            for(int j = 0; j < h; j++)
 	            {
 	                cells[i][j] = new Cell();
 	            }
@@ -34,9 +36,9 @@ public class Field {
 	           stringList.add(i);
 	        }
 	        
-	        for(int i = 0; i < n; i++)
+	        for(int i = 0; i < w; i++)
 	 	    {
-	 	       for(int j = 0; j < n; j++)
+	 	       for(int j = 0; j < h; j++)
 	 	       {
 	 	            if (cells[i][j].getName().equals(null))
 	 	            {
@@ -70,8 +72,13 @@ public class Field {
     	 cells[x][y].setName(str);
      }
      
-     public int getSize ()
+     public int getWidth ()
      {
-    	 return size;
+    	 return width;
+     }
+     
+     public int getHeight ()
+     {
+    	 return height;
      }
 }

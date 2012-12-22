@@ -28,8 +28,8 @@ public class Game {
     public void OpenCell(int x, int y)
     {
     	int count = 0, x1 = 0, y1 = 0;
-    	for (int i = 0; i < field.getSize(); i++)
-    		for (int j = 0; j < field.getSize(); j++)
+    	for (int i = 0; i < field.getWidth(); i++)
+    		for (int j = 0; j < field.getHeight(); j++)
     			if (field.get(i, j).equals(CellState.OPENED))
     			{
     				x1 = i;
@@ -75,9 +75,9 @@ public class Game {
 
     public void AddRecord (int time){}
 
-    public Game(int n)
+    public Game(int w, int h)
     {
-    	field = new Field(n);
+    	field = new Field(w, h);
     	status = GameState.INPROCESS;
     }
 }
