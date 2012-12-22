@@ -9,7 +9,7 @@ public class Game {
 
     private GameState status;
 
-    Field field;
+    public Field field;
 
     Controller controller;
 
@@ -25,49 +25,47 @@ public class Game {
     	status = newStatus;
     }
 
-    public void OpenCell(int x, int y)
+    public void OpenCell(int x)
     {
-    	int count = 0, x1 = 0, y1 = 0;
-    	for (int i = 0; i < field.getSize(); i++)
-    		for (int j = 0; j < field.getSize(); j++)
-    			if (field.get(i, j).equals(CellState.OPENED))
+    	int count = 0, y = 0;
+    	for (int i = 0; i < field.getLength(); i++)
+    			if (field.get(i).equals(CellState.OPENED))
     			{
-    				x1 = i;
-    				y1 = j;
+    				y = i;
     				count++;
     			}
     	if (0 == count)
     	{
-    		field.set(x, y, CellState.OPENED);
+    		field.set(x, CellState.OPENED);
     	}
     	if (1 == count)
     	{
-    		CompareCells(x, y, x1, y1);
+    		CompareCells(x, y);
     	}
     	else return;
     }
 
-    public void CloseCell(int x, int y)
+    public void CloseCell(int x)
     {
-    	field.set(x, y, CellState.CLOSED);
+    	field.set(x, CellState.CLOSED);
     }
 
-    public void RemoveCell(int x, int y)
+    public void RemoveCell(int x)
     {
-    	field.set(x, y, CellState.RESOLVED);
+    	field.set(x, CellState.RESOLVED);
     }
 
-    public void CompareCells(int x1, int y1, int x2, int y2)
+    public void CompareCells(int x1, int x2)
     { 
-    	if (field.getName(x1, y1).equals(field.getName(x2, y2)))
+    	if (field.getName(x1).equals(field.getName(x2)))
     	{
-    		RemoveCell(x1, y1);
-    		RemoveCell(x2, y2);
+    		RemoveCell(x1);
+    		RemoveCell(x2);
     	}
     	else 
     	{
-    		CloseCell(x1, y1);
-    		CloseCell(x2, y2);
+    		CloseCell(x1);
+    		CloseCell(x2);
     	}
     }
 
@@ -75,9 +73,9 @@ public class Game {
 
     public void AddRecord (int time){}
 
-    public Game(int n)
+    public Game(int w, int h)
     {
-    	field = new Field(n);
+    	field = new Field(w, h);
     	status = GameState.INPROCESS;
     }
 }
