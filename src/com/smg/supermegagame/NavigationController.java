@@ -27,7 +27,7 @@ public class NavigationController {
 		views = new HashMap<String,IViewController>();
 		
 		views.put(MAIN_VIEW, new MainMenuViewController(activity));
-		views.put(GAME_VIEW, new ConnectionViewController(activity));
+		views.put(GAME_VIEW, new GameViewController(activity));
 		views.put(CONECTION_VIEW, new ConnectionViewController(activity));
 		
 		for(IViewController ctrl : views.values()) {

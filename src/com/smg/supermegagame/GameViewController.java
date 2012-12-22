@@ -21,7 +21,7 @@ public class GameViewController extends BaseViewController {
 		
 		game = new Game (3, 5);
 		
-		GridView gridview = (GridView) findViewById(R.id.gridView1);
+		GridView gridview = (GridView) view.findViewById(R.id.gridView1);
 		
 		Ad = new ImAdapter(activity);
 		Ad.setGame(game);
