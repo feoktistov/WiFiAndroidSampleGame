@@ -34,6 +34,7 @@ public abstract class BaseViewController implements IViewController {
 	
 	private void setVisibilty(boolean visible) {
 		view.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+		view.setClickable(visible);
 	}
 	
 	public void show() {

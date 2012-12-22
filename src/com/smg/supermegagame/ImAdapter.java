@@ -3,8 +3,10 @@ package com.smg.supermegagame;
 import com.smg.supermegagame.Model.Game;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -49,7 +51,18 @@ public class ImAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
+		imageView.setTag(position);
+		imageView.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick( View v) {
+				Log.d("TAG", "OnItemClickListener");
+				game.OpenCell((Integer)v.getTag());
+				notifyDataSetChanged();
+			}
+		
+		});
+		
 		imageView.setImageResource(game.field.getName(position));
 		return imageView;
 	}

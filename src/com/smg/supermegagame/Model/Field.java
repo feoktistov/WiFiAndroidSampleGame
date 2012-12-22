@@ -21,6 +21,7 @@ public class Field {
 		    width = w;
 		    height = h;
 	        cells = new Cell[w*h];
+	        
 
 	        for(int i = 0; i < cells.length; i++)
 	        {
@@ -36,14 +37,11 @@ public class Field {
 	        
 	        for(int i = 0; i < cells.length; i++)
 	 	    {
-	 	       
-	 	            if (cells[i].getName().equals(0))
-	 	            {
- 	            		Random rand = new Random();
- 	            		int rndInt = rand.nextInt(intList.size());
- 	            		setName(i, intList.get(rndInt));
- 	            		intList.remove(rndInt);
-	 	            }
+ 	            	Random rand = new Random();
+ 	            	int rndInt = rand.nextInt(intList.size());
+ 	            	cells[i].setName(intList.get(rndInt).intValue());
+ 	            	intList.remove(rndInt);
+	 	            
 	 	            		
 	 	    }    	  
 	 }
@@ -58,12 +56,12 @@ public class Field {
          cells[x].setState(newValue);
 	 }
      
-     public Integer getName (int x)
+     public int getName (int x)
      {
     	 return cells[x].getName();
      }
      
-     public void setName (int x, Integer str)
+     public void setName (int x, int str)
      {
     	 cells[x].setName(str);
      }

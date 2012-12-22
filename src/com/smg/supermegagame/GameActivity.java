@@ -43,8 +43,7 @@ public class GameActivity extends Activity {
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                                        ViewGroup.LayoutParams.FILL_PARENT);
         FrameLayout framelayout = new FrameLayout(this);
-        framelayout.setLayoutParams(framelayout_params);
-        
+        framelayout.setLayoutParams(framelayout_params); 
         
        rootController = new NavigationController(this, framelayout);
        rootController.showViewByName(NavigationController.MAIN_VIEW);

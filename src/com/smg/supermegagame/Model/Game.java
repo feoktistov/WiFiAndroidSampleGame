@@ -57,7 +57,7 @@ public class Game {
 
     public void CompareCells(int x1, int x2)
     { 
-    	if (field.getName(x1).equals(field.getName(x2)))
+    	if (field.getName(x1) == field.getName(x2))
     	{
     		RemoveCell(x1);
     		RemoveCell(x2);

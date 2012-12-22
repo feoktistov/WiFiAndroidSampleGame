@@ -3,6 +3,7 @@ package com.smg.supermegagame;
 import com.smg.supermegagame.Model.Game;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -38,6 +39,7 @@ public class GameViewController extends BaseViewController {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View v, int position,
 				long id) {
+			Log.d("TAG", "OnItemClickListener");
 			game.OpenCell(position);
 			Ad.notifyDataSetChanged();
 		}
