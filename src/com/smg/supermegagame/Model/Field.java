@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
+import com.smg.supermegagame.R;
 
 
 public class Field {
 	
 	
-	String[] CellNames = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
+	Integer[] CellNames = new Integer[]{R.drawable.ferm1, R.drawable.ferm2, R.drawable.ferm3, R.drawable.ferm4, R.drawable.ferm5, R.drawable.ferm6, R.drawable.ferm7, R.drawable.ferm8};
 	
-	 private Cell cells[][];
+	 private Cell cells[];
 	 private int width;
 	 private int height;
 
@@ -19,66 +20,58 @@ public class Field {
 	 {
 		    width = w;
 		    height = h;
-	        cells = new Cell[w][h];
+	        cells = new Cell[w*h];
 
-	        for(int i = 0; i < w; i++)
+	        for(int i = 0; i < cells.length; i++)
 	        {
-	            for(int j = 0; j < h; j++)
-	            {
-	                cells[i][j] = new Cell();
-	            }
+	            cells[i] = new Cell();
 	        }
 	        
-	        ArrayList<String> stringList = new ArrayList<String>();
-	        for (String i:CellNames)
+	        ArrayList<Integer> intList = new ArrayList<Integer>();
+	        for (Integer i:CellNames)
 	        {
-	           stringList.add(i);
-	           stringList.add(i);
+	           intList.add(i);
+	           intList.add(i);
 	        }
 	        
-	        for(int i = 0; i < w; i++)
+	        for(int i = 0; i < cells.length; i++)
 	 	    {
-	 	       for(int j = 0; j < h; j++)
-	 	       {
-	 	            if (cells[i][j].getName().equals(null))
+	 	       
+	 	            if (cells[i].getName().equals(null))
 	 	            {
  	            		Random rand = new Random();
- 	            		int rndInt = rand.nextInt(stringList.size());
- 	            		setName(i, j, stringList.get(rndInt));
- 	            		stringList.remove(rndInt);
+ 	            		int rndInt = rand.nextInt(intList.size());
+ 	            		setName(i, intList.get(rndInt));
+ 	            		intList.remove(rndInt);
 	 	            }
-	 	        }
 	 	            		
 	 	    }    	  
 	 }
 	 
-	 public Game.CellState get(int x, int y)
+	 public Game.CellState get(int x)
 	 {
-		 return cells[x][y].getState();
+		 return cells[x].getState();
 	 }
 
-     public void set(int x, int y, Game.CellState newValue)
+     public void set(int x, Game.CellState newValue)
      {
-         cells[x][y].setState(newValue);
+         cells[x].setState(newValue);
 	 }
      
-     public String getName (int x, int y)
+     public Integer getName (int x)
      {
-    	 return cells[x][y].getName();
+    	 return cells[x].getName();
      }
      
-     public void setName (int x, int y, String str)
+     public void setName (int x, Integer str)
      {
-    	 cells[x][y].setName(str);
+    	 cells[x].setName(str);
      }
      
-     public int getWidth ()
+     public int getLength ()
      {
-    	 return width;
-     }
-     
-     public int getHeight ()
-     {
-    	 return height;
+    	 return width*height;
      }
 }
+     
+   

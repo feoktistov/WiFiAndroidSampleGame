@@ -1,6 +1,7 @@
 package com.smg.supermegagame;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -24,13 +25,13 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.smg.supermegagame.Model.*;
 public class GameActivity extends Activity {
 
 	static final boolean IS_SERVER = true;
-	
+	Game game;
 	private static String TAG = "GameActivity";
-	
+	ImAdapter Ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,11 @@ public class GameActivity extends Activity {
 
 	//	mSelectText = (TextView) findViewById(R.id.info);
 		GridView gridview = (GridView) findViewById(R.id.gridView1);
-		gridview.setAdapter(new ImAdapter(this));
+		Ad = new ImAdapter(this);
+		gridview.setAdapter(Ad);
 
 		gridview.setOnItemClickListener(gridviewOnItemClickListener);
-
+	    game = new Game (3, 5);
     }
     
     private GridView.OnItemClickListener gridviewOnItemClickListener = new GridView.OnItemClickListener() {
@@ -50,10 +52,13 @@ public class GameActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View v, int position,
 				long id) {
+			game.OpenCell(position);
+			Ad.notifyDataSetChanged();
 			// TODO Auto-generated method stub
 
 		//	mSelectText.setText(String.valueOf(position));
 		}
+		
 	};
 
 

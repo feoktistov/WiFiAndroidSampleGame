@@ -2,7 +2,7 @@ package com.smg.supermegagame.Model;
 
 public class Cell {
 	
-	private String name;
+	private Integer name;
 	private Game.CellState state;
 
     public Game.CellState getState() 
@@ -15,12 +15,12 @@ public class Cell {
         this.state = state;
     }
     
-    public String getName()
+    public Integer getName()
     {
     	return name;
     }
     
-    public void setName(String str)
+    public void setName(Integer str)
     {
     	name = str;
     }

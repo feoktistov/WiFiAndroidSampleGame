@@ -1,5 +1,7 @@
 package com.smg.supermegagame;
 
+import com.smg.supermegagame.Model.Game;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 public class ImAdapter extends BaseAdapter {
 	private Context mContext;
 
+	private Game game;
 	public ImAdapter(Context c) {
 		mContext = c;
 	}
@@ -18,11 +21,19 @@ public class ImAdapter extends BaseAdapter {
 		return mThumbIds.length;
 	}
 
-	public Object getItem(int position) {
-		return mThumbIds[position];
+	
+	public void setGame (Game g)
+	{
+		game = g;
+	}
+	
+	public Object getItem(int position) 
+	{
+		return game.field.getName(position);
 	}
 
-	public long getItemId(int position) {
+	public long getItemId(int position) 
+	{
 		return position;
 	}
 
