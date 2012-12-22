@@ -1,4 +1,4 @@
-package com.example.supermegagame;
+package com.smg.supermegagame;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
