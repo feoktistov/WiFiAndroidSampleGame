@@ -10,7 +10,7 @@ import com.smg.supermegagame.R;
 public class Field {
 	
 	
-	Integer[] CellNames = new Integer[]{R.drawable.ferm1, R.drawable.ferm2, R.drawable.ferm3, R.drawable.ferm4, R.drawable.ferm5, R.drawable.ferm6, R.drawable.ferm7, R.drawable.ferm8};
+	public Integer[] CellNames = new Integer[]{R.drawable.ferm1, R.drawable.ferm2, R.drawable.ferm3, R.drawable.ferm4, R.drawable.ferm5, R.drawable.ferm6, R.drawable.ferm7, R.drawable.ferm8};
 	
 	 private Cell cells[];
 	 private int width;
@@ -37,7 +37,7 @@ public class Field {
 	        for(int i = 0; i < cells.length; i++)
 	 	    {
 	 	       
-	 	            if (cells[i].getName().equals(null))
+	 	            if (cells[i].getName().equals(0))
 	 	            {
  	            		Random rand = new Random();
  	            		int rndInt = rand.nextInt(intList.size());

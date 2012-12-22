@@ -18,7 +18,7 @@ public class ImAdapter extends BaseAdapter {
 	}
 
 	public int getCount() {
-		return mThumbIds.length;
+		return game.field.getLength();
 	}
 
 	
@@ -50,10 +50,10 @@ public class ImAdapter extends BaseAdapter {
 			imageView = (ImageView) convertView;
 		}
 
-		imageView.setImageResource(mThumbIds[position]);
+		imageView.setImageResource(game.field.getName(position));
 		return imageView;
 	}
 
 	// references to our images
-	public	Integer[] mThumbIds = { R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card };
+	//public	Integer[] mThumbIds = { R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card, R.drawable.card };
 }
