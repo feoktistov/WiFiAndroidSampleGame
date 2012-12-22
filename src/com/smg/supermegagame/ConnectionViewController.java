@@ -9,12 +9,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import android.app.Activity;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 
 public class ConnectionViewController extends BaseViewController  {
@@ -26,13 +28,17 @@ public class ConnectionViewController extends BaseViewController  {
 	
 	public static final String TAG = "ConnectionViewController";
 	
+	public ConnectionViewController(Activity activity) {
+		super(activity);
+	}
+	
 	@Override
 	protected View getViewFromSource() {
-		View view = activity.findViewById(R.layout.activity_game);
-		
-		 textViewMessage = (TextView)activity.findViewById(R.id.textViewMessage);
+		 View view = findViewById(R.layout.connecton_menu);
+	
+		 textViewMessage = (TextView)view.findViewById(R.id.textViewMessage);
 	        
-	        buttonAppend = (Button) activity.findViewById(R.id.ButtonAppend);
+	        buttonAppend = (Button) view.findViewById(R.id.ButtonAppend);
 	        buttonAppend.setOnClickListener(new Button.OnClickListener() {
 	            public void onClick(View v) {
 	                 connectToServer(); 
@@ -40,9 +46,9 @@ public class ConnectionViewController extends BaseViewController  {
 	            }
 	        });
 	        
-	        serverIpAdress = (EditText)activity.findViewById(R.id.editTextIp);
+	        serverIpAdress = (EditText)view.findViewById(R.id.editTextIp);
 	        
-	        buttonStart = (Button) activity.findViewById(R.id.ButtonStartGame);
+	        buttonStart = (Button) view.findViewById(R.id.ButtonStartGame);
 	        buttonStart.setOnClickListener(new Button.OnClickListener() {
 	            public void onClick(View v) {
 	            	serverLaunch();
@@ -54,14 +60,14 @@ public class ConnectionViewController extends BaseViewController  {
 	        
 	 
 	        
-	        buttonConnect = (Button) activity.findViewById(R.id.ButtonConnect);
+	        buttonConnect = (Button) view.findViewById(R.id.ButtonConnect);
 	        buttonConnect.setOnClickListener(new Button.OnClickListener() {
 	            public void onClick(View v) {
 	            	showConnectionView(true);
 	            	showStartScreen(false);
 	            }
 	        });
-		
+			
 		
 		return view;
 	}
