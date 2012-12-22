@@ -1,5 +1,8 @@
 package com.smg.supermegagame.Model;
 
+
+import com.smg.supermegagame.R;
+
 public class Cell {
 	
 	private Integer name;
@@ -17,6 +20,8 @@ public class Cell {
     
     public Integer getName()
     {
+    	if (state.equals(Game.CellState.CLOSED))
+    		return R.drawable.card;
     	return name;
     }
     
@@ -28,6 +33,7 @@ public class Cell {
     Cell() 
     {
     	state = Game.CellState.CLOSED;
+    	name = 0;
     }
     
     
