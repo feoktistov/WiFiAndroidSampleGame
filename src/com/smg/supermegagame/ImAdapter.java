@@ -51,13 +51,13 @@ public class ImAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-		imageView.setTag(position);
+		imageView.setTag(new Integer(position));
 		imageView.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick( View v) {
 				Log.d("TAG", "OnItemClickListener");
-				game.OpenCell((Integer)v.getTag());
+				game.OpenCell(((Integer)v.getTag()).intValue());
 				notifyDataSetChanged();
 			}
 		

@@ -29,7 +29,7 @@ public class Game {
     {
     	int count = 0, y = 0;
     	for (int i = 0; i < field.getLength(); i++)
-    			if (field.get(i).equals(CellState.OPENED))
+    			if (field.get(i) == CellState.OPENED)
     			{
     				y = i;
     				count++;
@@ -40,6 +40,7 @@ public class Game {
     	}
     	if (1 == count)
     	{
+    		field.set(x, CellState.OPENED);
     		CompareCells(x, y);
     	}
     	else return;

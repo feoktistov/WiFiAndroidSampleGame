@@ -27,22 +27,8 @@ public class GameViewController extends BaseViewController {
 		Ad = new ImAdapter(activity);
 		Ad.setGame(game);
 		gridview.setAdapter(Ad);
-
-		gridview.setOnItemClickListener(gridviewOnItemClickListener);
 	    
 		
 		return view;
 	}
-	
-	private GridView.OnItemClickListener gridviewOnItemClickListener = new GridView.OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View v, int position,
-				long id) {
-			Log.d("TAG", "OnItemClickListener");
-			game.OpenCell(position);
-			Ad.notifyDataSetChanged();
-		}
-		
-	};
 }
