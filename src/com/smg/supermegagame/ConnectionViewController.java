@@ -1,6 +1,8 @@
 package com.smg.supermegagame;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -21,10 +23,15 @@ import android.widget.TextView;
 
 public class ConnectionViewController extends BaseViewController  {
 	private Button buttonStart;
-	private Button buttonConnect;
-	private Button buttonAppend;
+	private Button buttonSend;
+	
 	private EditText serverIpAdress;
 	private TextView textViewMessage;
+	
+	private EditText textOut;
+	private TextView textIn;
+	
+	private boolean isServer = false;
 	
 	public static final String TAG = "ConnectionViewController";
 	
@@ -35,7 +42,7 @@ public class ConnectionViewController extends BaseViewController  {
 	@Override
 	public void show() {
 		super.show();
-		showConnectionView(false);
+		showConnectionView(true);
     	showStartScreen(true);
 	}
 	
@@ -44,14 +51,10 @@ public class ConnectionViewController extends BaseViewController  {
 		 View view = findViewById(R.layout.connecton_menu);
 	
 		 textViewMessage = (TextView)view.findViewById(R.id.textViewMessage);
-	        
-	        buttonAppend = (Button) view.findViewById(R.id.ButtonAppend);
-	        buttonAppend.setOnClickListener(new Button.OnClickListener() {
-	            public void onClick(View v) {
-	                 connectToServer(); 
-	                 showConnectionView(false);
-	            }
-	        });
+		 textViewMessage.setText("");
+		 
+		 textIn = (TextView)view.findViewById(R.id.TextViewIn);
+		 textOut = (EditText)view.findViewById(R.id.EditTextSend);
 	        
 	        serverIpAdress = (EditText)view.findViewById(R.id.editTextIp);
 	        
@@ -65,28 +68,23 @@ public class ConnectionViewController extends BaseViewController  {
 	            }
 	        });
 	        
-	 
-	        
-	        buttonConnect = (Button) view.findViewById(R.id.ButtonConnect);
-	        buttonConnect.setOnClickListener(new Button.OnClickListener() {
+	        buttonSend = (Button) view.findViewById(R.id.ButtonSend);
+	        buttonSend.setOnClickListener(new Button.OnClickListener() {
 	            public void onClick(View v) {
-	            	showConnectionView(true);
-	            	showStartScreen(false);
+	            	sendToServer(textOut.getText().toString());
 	            }
 	        });
-			
-		
+	      
 		return view;
 	}
 	
     private void showConnectionView(boolean visible) {
-    	buttonAppend.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     	serverIpAdress.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     }
     
     private void showStartScreen(boolean visible) {
-    	buttonConnect.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     	buttonStart.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+    	buttonSend.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     }
     
     public String getIpAddr() {
@@ -102,11 +100,14 @@ public class ConnectionViewController extends BaseViewController  {
  	   (ip >> 24 & 0xff));
 
  	   return ipString;
- }
- 
+    }
+    
+
+   
  
  
  private void serverLaunch() {
+	 isServer = true;
  	Thread thread = new Thread()
  	{
  	      @Override
@@ -114,23 +115,19 @@ public class ConnectionViewController extends BaseViewController  {
  	    	  try {
  	    		  Log.d(TAG, "serverLaunch");
  	              Boolean end = false;
- 	              ServerSocket ss = new ServerSocket(12345);
+ 	              ServerSocket ss = new ServerSocket(8888);
  	              while(!end){
  	                      //Server is waiting for client here, if needed
- 	                      Socket s = ss.accept();
- 	                      BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
- 	                      PrintWriter output = new PrintWriter(s.getOutputStream(),true); //Autoflush
- 	                      final String st = input.readLine();
+ 	                    Socket socket = ss.accept();
+ 	                    DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+ 	                    DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
  	                      
- 	                      textViewMessage.post(new Runnable() {
- 	                    	  public void run() {
- 	                    		  textViewMessage.setText("From client:" + st);
- 	                    	  }
- 	                      });
- 	                      
- 	                      Log.d("Tcp Example", "From client: "+st);
- 	                      output.println("Good bye and thanks for all the fish :)");
- 	                      s.close();
+ 	                    prepareMessageForClient( textOut.getText().toString() );
+ 	                    dataOutputStream.writeUTF(messageForClient);
+ 	                    getText( dataInputStream.readUTF() );
+ 	                     
+
+ 	                     socket.close();
  	                     // if ( STOPPING conditions){ end = true; }
  	              }
  	              ss.close();
@@ -150,7 +147,21 @@ public class ConnectionViewController extends BaseViewController  {
  	
  }
  
- private void connectToServer() {
+ private void getText(final String message) {
+	 textIn.post( new Runnable() {
+     	 public void run() {
+     		textIn.setText(message);
+     	 }
+      });
+ }
+ 
+ private String messageForClient = "";
+ private void prepareMessageForClient(String message) {
+	 messageForClient = message;
+ }
+ 
+ 
+ private void sendToServer(final String message) {
  	Thread thread = new Thread()
  	{
  	      @Override
@@ -159,20 +170,15 @@ public class ConnectionViewController extends BaseViewController  {
 			    	try {
 			    		Log.d(TAG, "connectToServer");
 			    		String ip = serverIpAdress.getText().toString();
-			            Socket s = new Socket(ip,12345);
+			            Socket socket = new Socket(ip,8888);
 			
-			            //outgoing stream redirect to socket
-			            OutputStream out = s.getOutputStream();
-			
-			            PrintWriter output = new PrintWriter(out);
-			            output.println("Hello Android!");
-			            BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			
-			            //read line(s)
-			            String st = input.readLine();
-			            //. . .
-			            //Close connection
-			            s.close();
+			            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+	                    DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+	                      
+	                    dataOutputStream.writeUTF(message);
+	                    getText( dataInputStream.readUTF() );
+			            
+	                    socket.close();
 			    	} catch (UnknownHostException e) {
 				            // TODO Auto-generated catch block
 				            e.printStackTrace();

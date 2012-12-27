@@ -5,47 +5,59 @@
     tools:context=".GameActivity" >
 
     <EditText
-        android:id="@+id/editTextIp"
+        android:id="@+id/EditTextSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:ems="10" />
+        android:ems="10" >
 
-    <Button
-        android:id="@+id/ButtonAppend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextIp"
-        android:layout_centerHorizontal="true"
-        android:text="Connect" />
-
-    <Button
-        android:id="@+id/ButtonConnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ButtonAppend"
-        android:layout_below="@+id/ButtonAppend"
-        android:layout_marginTop="118dp"
-        android:text="Connect" />
-
-    <Button
-        android:id="@+id/ButtonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ButtonAppend"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Start" />
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/textViewMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ButtonConnect"
-        android:layout_below="@+id/ButtonConnect"
-        android:layout_marginTop="58dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
         android:text="SuperMegaGame"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editTextIp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/EditTextSend"
+        android:layout_alignParentTop="true"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/TextViewIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/ButtonStartGame"
+        android:layout_below="@+id/textViewMessage"
+        android:layout_marginTop="15dp"
+        android:text="TextIn"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/ButtonStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextIp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/ButtonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/EditTextSend"
+        android:layout_alignLeft="@+id/TextViewIn"
+        android:text="Send" />
 
 </RelativeLayout>

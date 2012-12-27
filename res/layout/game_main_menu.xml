@@ -23,16 +23,6 @@
         android:text="Play" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="40dp"
-        android:text="Records" />
-
-    <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,5 +41,13 @@
         android:layout_below="@+id/button3"
         android:layout_marginTop="35dp"
         android:text="How to play" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonPlay"
+        android:layout_centerHorizontal="true"
+        android:text="Records" />
 
 </RelativeLayout>
